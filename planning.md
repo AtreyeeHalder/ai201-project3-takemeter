@@ -62,6 +62,12 @@ Real ambiguity is expected in a text-heavy discussion like r/LetsTalkMusic. The 
 4. **Discussion vs. Question (B vs. D).** "What makes a chord progression sound 'sad'?": open enough to invite debate (B), but also has a real answer (D).
    **Rule:** If there is a *correct/factual answer the author wants*, label D. If the author is inviting *opinions and there's no single right answer*, label B.
 
+5. **Question vs. Review (D vs. C).** "Is the production on this album supposed to sound this muddy, or is it just me?" mixes a factual ask (D) with the author's own negative reaction to a specific work (C).
+   **Rule:** If the author primarily wants an *answer or explanation* and the named work is just the occasion for the question, label D. If the post is really the author *delivering their verdict* on the work and the question is rhetorical or secondary, label C. The test: *would a single factual reply resolve the post?* If yes, label D; if the author clearly wants others to react to their opinion, label C.
+
+6. **Recommendation Request vs. Discussion (A vs. B).** "What are the most underrated albums of the 2010s?" invites a broad community conversation (B) but also reads as a call for specific titles (A).
+   **Rule:** If the post wants *specific titles/artists for the author's own listening*, label A. If it opens a *general conversation where the suggestions are the topic of debate* rather than a personal to-listen list, label B. The test: *is the author building their own queue, or starting a discussion?* Personal use-case or taste framing leans A; broad, opinion-canvassing framing leans B.
+
 **General annotation protocol for ambiguity:**
 - Apply the *primary-intent / terminal-ask* heuristic first; the body's *closing move* usually reveals intent.
 - Maintain a running *edge-case log* (a separate `edge_cases.md`) documenting each hard call and the rule applied, so decisions stay consistent across the dataset and the rules can be refined.
@@ -78,9 +84,7 @@ Real ambiguity is expected in a text-heavy discussion like r/LetsTalkMusic. The 
 
 **Volume target.** A balanced set of *~50 examples per label*, for a total of *~200 hand-labeled posts*.
 
-**Fields collected.** Title, selftext (body), score, number of comments, created date, and any existing flair. They will be stored as rows in a CSV file with a `label` column added during annotation.
-
-**Cleaning.** Drop removed/deleted posts and posts under ~15 words of body text where intent can't be reliably judged.
+**Fields collected.** Title, selftext (body). They will be stored as rows in a CSV file with a `label` column added during annotation. The rows will be `text` containing the title and selftext, and `label` containing the label.
 
 **Handling underrepresented labels after 200 examples.** If, at the 200-example checkpoint, any label is clearly under target (e.g., < ~20 examples), I will take the following steps:
 1. *Targeted querying.* Search r/LetsTalkMusic for label-correlated keywords (e.g., "first listen," "track by track," "review" for C; "how do I," "beginner," "difference between" for D) and the sub's review/question flairs to find more candidates.
@@ -127,6 +131,6 @@ I will use AI tools at the points where they help the annotation/evaluation work
 
 1. **Label stress-testing (before annotating).** I will give Claude Code my four label definitions and the Hard Edge Cases section and ask it to generate 5–10 posts that deliberately sit on the boundary between two labels. I'll try to classify each one myself: any post I cannot assign cleanly exposes a gap in my definitions, and I will tighten the definition or add an edge-case rule before annotating 200 examples.
 
-2. **Annotation assistance (pre-labeling).** I will use Claude Code to pre-label each batch, then review every pre-label myself. The model gets the label definitions and edge-case rules and returns a suggested label per post. The CSV gets two extra columns: `ai_suggested_label` (the model's guess) and `final_label` (my reviewed decision), so every pre-labeled row is identifiable and the human/AI agreement rate is computable.
+2. **Annotation assistance (pre-labeling).** I will not use an LLM to pre-label a batch of posts. Labelling manually will help me gain a deeper understanding of the nuance and context of the data, and identify hard edge cases better.
 
 3. **Failure analysis (after evaluation).** I will export the misclassified examples (text + true label + predicted label) and ask the LLM to cluster them into patterns (e.g., "Reviews framed as theses get called Discussion," or short posts losing intent signal). I'll treat these as *hypotheses only*: I verify each by pulling the actual posts it cites and checking the pattern holds against the confusion matrix before any of it goes into my evaluation write-up.
