@@ -217,6 +217,14 @@ A genuine terminology question, but "difference between genre X and genre Y" rea
 
 <!--Include a Sample Classifications subsection in your evaluation report: a markdown table or list of 3–5 example posts run through your fine-tuned model, each shown with the predicted label and its confidence score, and for at least one correctly-predicted example, a sentence explaining why the prediction is reasonable. Write these out as text (a markdown table or list) — not a screenshot — so they read cleanly in the README.-->
 
+Three posts run through the fine-tuned `distilbert-base-uncased` model:
+
+| # | Post | Predicted label | Confidence | Actual label | Reasoning |
+| - | ---- | --------------- | ---------- | ------------ | --------- |
+| 1 | "Just finished my first listen of the new Tyler, the Creator record. Here's a track-by-track of what landed and what didn't for me." | `recommendation_request` | `0.33` | `review` | The model saw a named artist and first-person taste language and defaulted to its `recommendation_request` lexical shortcut, missing that the post is a personal verdict on one specific album. |
+| 2 | "Why did nu-metal collapse so completely after ~2003 when it dominated for half a decade?" | `recommendation_request` | `0.28` | `discussion` | A genre-history question with no named work to anchor on left the model with weak signal, so it fell back to its most common class (`recommendation_request`) at very low confidence. |
+| 3 | "How do you organise your playlists? ... Some advice on how to populate them would be nice." | `question` | `0.34` | `question` | The model correctly read the request for a *method* ("how do you organise," "advice on how to populate") rather than for specific tracks, anchoring on the practical-guidance signal that defines `question`. |
+
 ---
 
 ## Reflection
