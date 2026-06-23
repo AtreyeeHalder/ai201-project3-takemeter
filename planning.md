@@ -78,9 +78,7 @@ Real ambiguity is expected in a text-heavy discussion like r/LetsTalkMusic. The 
 
 ## Data Collection Plan
 
-**Source.** Reddit's public API (via PRAW) and/or Pushshift-style archives for historical reach. I will pull from:
-- `hot`, `new`, and `top` (all-time and yearly) listings of r/LetsTalkMusic to avoid over-sampling a single time window or popularity tier.
-- Existing *user/mod flairs* as *weak* hints for seeding (not ground truth), every example is still hand-labeled.
+**Source.** Reddit. I will pull manually from `hot`, `new`, and `top` (all-time and yearly) listings of r/LetsTalkMusic to avoid over-sampling a single time window or popularity tier.
 
 **Volume target.** A balanced set of *~50 examples per label*, for a total of *~200 hand-labeled posts*.
 
