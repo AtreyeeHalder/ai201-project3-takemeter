@@ -50,7 +50,7 @@ I will use **four labels**. Each captures a distinct intent, and together they c
 
 Real ambiguity is expected in a text-heavy discussion like r/LetsTalkMusic. The most common collisions, and the rules I will apply to handle them during annotation:
 
-1. **Question vs. Recommendation (D vs. A).** "How do I get into jazz?" can be answered with *facts* (a listening framework) or *recommendations* (specific albums).
+1. **Question vs. Recommendation (D vs. A).** This is the hardest anticipated edge case. "How do I get into jazz?" can be answered with *facts* (a listening framework) or *recommendations* (specific albums).
    **Rule:** If the author asks for an *approach/explanation*, label D. If they explicitly ask for *specific titles/artists*, label A. When the post asks for both, default to A only if specific-title requests dominate; otherwise D.
 
 2. **Discussion vs. Review (B vs. C).** "Why OK Computer is the most important album of the 90s." This reads like a thesis (B) but is anchored to one specific work and is fundamentally the author's verdict (C).
