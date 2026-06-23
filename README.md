@@ -180,7 +180,7 @@ Rows are the true label; columns are the predicted label.
 | review                 | 1                      | 1          | 6      | 0        |
 | question               | 3                      | 1          | 0      | 3        |
 
-### Specific Examples the Fine-tuned Model got Wrong with my Analysis
+### Specific Examples the Fine-tuned Model got Wrong
 
 <!--at least 3 specific examples the fine-tuned model got wrong with your analysis of why each one failed. "The model got it wrong" is not analysis — use these guiding questions to go deeper:
 
@@ -258,3 +258,15 @@ One way the spec helped me is brainstorming the hard edge cases and forming rule
 - *What I gave the AI:* I gave Claude Code the Community and Labels sections of the planning.md and asked it to suggest the most common hard edge cases.
 - *What it produced:* It suggested question vs. recommendation_request, discussion vs. review, recommendation_request vs. review, discussion vs. question.
 - *What I changed or overrode:* I created rules for 2 more edge cases, question vs. review and recommendation_request vs. discussion, as those were also prevalent in my dataset.
+
+---
+
+## Demo Video
+
+Link: https://drive.google.com/file/d/1vTv0Ic4OrafogIxkzcuvMbs67lREq0br/view?usp=sharing
+
+The Demo Video shows the following:
+- 3 posts classified by my fine-tuned model with label and confidence visible on Google Colab
+- Explanation and reasoning of two incorrect predictions and why it went wrong
+- Explanation and reasoning of one correct prediction and why it is reasonable
+- Walkthrough of Evaluation Report showing overall accuracy and per-class metrics for both baseline and fine-tuned models, confusion matrix for fine-tuned model, and specific examples the fine-tuned model got wrong (including my analysis).
